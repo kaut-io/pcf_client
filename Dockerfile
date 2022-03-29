@@ -1,6 +1,7 @@
 FROM debian:buster
-MAINTAINER Lon Kaut <lonkaut@gmail.com>
+LABEL MAINTAINER="Lon Kaut <lonkaut@gmail.com>"
 
+ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 RUN  \
   apt-get update \
@@ -18,6 +19,8 @@ RUN  \
   && apt-get install -yq cf-cli om \
   && rm -rf /hammer /root/go \
   && apt-get -yq autoremove gcc golang \
-  && apt-get autoclean
+  && apt-get autoclean \
+  && mkdir /persist
 
+WORKDIR /persist
 CMD ["/bin/true"]
