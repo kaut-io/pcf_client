@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 RUN  \
   apt-get update \
-  && apt-get install -yq --no-install-recommends curl gnupg2 jq git netcat ca-certificates \
+  && apt-get install -yq --no-install-recommends curl gnupg2 jq git netcat-openbsd ca-certificates \
   && apt-get install -yq golang gcc openssh-client \
   && git clone https://github.com/pivotal/hammer.git && cd hammer && go install \
   && mv /root/go/bin/hammer /usr/local/bin/ \
