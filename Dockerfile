@@ -5,8 +5,15 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 RUN  \
   apt-get update \
-  && apt-get install -yq --no-install-recommends curl gnupg2 jq git netcat-openbsd ca-certificates \
-  && apt-get install -yq golang gcc openssh-client \
+  && apt-get install -yq --no-install-recommends curl gnupg2 jq git netcat-openbsd ca-certificates vim-nox python3-pip\
+  && apt-get install -yq golang gcc openssh-client zsh autojump fzf \
+  && python3 -m pip install --upgrade pip \
+  && pip3 install yq \
+  && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
+  && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
+  && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
+  && git clone https://github.com/frodenas/bosh-zsh-autocomplete-plugin.git ~/.oh-my-zsh/plugins/bosh \
+  && sed -i 's/^plugins=.*/plugins=\(git\ zsh-autosuggestions\ zsh-syntax-highlighting\ bosh\ autojump\ fzf\ python\)/' $HOME/.zshrc \
   && git clone https://github.com/pivotal/hammer.git && cd hammer && go install \
   && mv /root/go/bin/hammer /usr/local/bin/ \
   && curl -s https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add - \
