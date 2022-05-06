@@ -29,5 +29,6 @@ RUN  \
   && apt-get autoclean \
   && mkdir /persist
 
+ADD makedroplet.sh /bin/
 WORKDIR /persist
-CMD ["/bin/true"]
+CMD ["/bin/makedroplet.sh"]
