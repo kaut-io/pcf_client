@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 LABEL MAINTAINER="Lon Kaut <lonkaut@gmail.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -28,6 +28,17 @@ RUN  \
   && apt-get -yq autoremove gcc golang \
   && apt-get autoclean \
   && mkdir /persist
+
+RUN echo  \
+"echo '---=== This should get you started ===---' \n \
+echo '  hammer -t <creds>.json cf-login' \n \
+echo '  cf create-org myorg' \n \
+echo '  cf csp -o myorg staging' \n \
+echo '  cf target -o myorg -s staging' \n \
+echo '  cd <my app>' \n \
+echo '  cf-push' \n \
+\n "\
+| tee -a /root/.zshrc /root/.bashrc
 
 ADD makedroplet.sh /bin/
 WORKDIR /persist
