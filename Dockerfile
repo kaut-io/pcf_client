@@ -29,6 +29,7 @@ RUN  \
   && apt-get autoclean \
   && mkdir /persist
 
+
 RUN echo  \
 "echo '---=== This should get you started ===---' \n \
 echo '  hammer -t <creds>.json cf-login' \n \
