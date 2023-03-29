@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM ubuntu:latest
 LABEL MAINTAINER="Lon Kaut <lonkaut@gmail.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
