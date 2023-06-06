@@ -21,7 +21,6 @@ RUN  \
   && curl -Lo /usr/local/bin/bosh "https://github.com/cloudfoundry/bosh-cli/releases/download/v6.4.7/bosh-cli-6.4.7-linux-amd64" \
   && chmod a+x /usr/local/bin/bosh \
   && echo "deb https://packages.cloudfoundry.org/debian stable main" >> /etc/apt/sources.list.d/cloudfoundry-cli.list \
-  # && echo "deb http://apt.starkandwayne.com stable main" >> /etc/apt/sources.list.d/starkandwayne.list \
   && curl -JLo /usr/local/bin/om  "https://github.com/pivotal-cf/om/releases/download/7.9.0/om-linux-amd64-7.9.0" \
   && chmod a+rx /usr/local/bin/om \
   && apt-get update \
@@ -29,8 +28,9 @@ RUN  \
   && rm -rf /hammer /root/go \
   && apt-get -yq autoremove gcc golang \
   && apt-get autoclean \
-  && mkdir /persist \
-  && git config --global --add safe.directory /persist
+  && mkdir /persist
+
+  RUN git config --global --add safe.directory /persist
 
 
 RUN echo  \
