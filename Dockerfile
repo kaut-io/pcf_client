@@ -21,9 +21,9 @@ RUN  \
   && curl -Lo /usr/local/bin/bosh "https://github.com/cloudfoundry/bosh-cli/releases/download/v6.4.7/bosh-cli-6.4.7-linux-amd64" \
   && chmod a+x /usr/local/bin/bosh \
   && echo "deb https://packages.cloudfoundry.org/debian stable main" >> /etc/apt/sources.list.d/cloudfoundry-cli.list \
-  && echo "deb http://apt.starkandwayne.com stable main" >> /etc/apt/sources.list.d/starkandwayne.list \
+  # && echo "deb http://apt.starkandwayne.com stable main" >> /etc/apt/sources.list.d/starkandwayne.list \
   && apt-get update \
-  && apt-get install -yq cf-cli om \
+  && apt-get install -yq cf-cli \
   && rm -rf /hammer /root/go \
   && apt-get -yq autoremove gcc golang \
   && apt-get autoclean \
