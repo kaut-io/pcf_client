@@ -29,7 +29,8 @@ RUN  \
   && rm -rf /hammer /root/go \
   && apt-get -yq autoremove gcc golang \
   && apt-get autoclean \
-  && mkdir /persist
+  && mkdir /persist \
+  && git config --global --add safe.directory /persist
 
 
 RUN echo  \
